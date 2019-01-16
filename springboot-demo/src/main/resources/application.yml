@@ -1,0 +1,37 @@
+server:
+  context-path: /
+  port: 8888
+#显示debug日志信息
+debug: true
+##演示自动配置
+hello: 
+  msg: 颜伟
+  show: true
+#是否启用aop拦截日志存储mongo
+enableAop: 
+  storeMongo: false
+spring: 
+  data: 
+   #mongodb:
+    #  uri: mongodb://root:root@192.168.163.128/yan?authSource=admin&authMechanism=MONGODB-CR
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&amp;zeroDateTimeBehavior=convertToNull&amp;characterEncoding=utf8
+    username: root
+    password: root
+  jpa: 
+    show-sql: true
+    format-sql: true
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    
+  redis:  #redis配置
+    database: 1 #  数据库索引
+    host: 115.28.185.22
+    port: 6537
+    password: Jbinfo@E12349
+    pool: #    链接池
+      max-active: 8
+      max-wait: 1
+      max-idle: 8
+      min-idle: 0
+    timeout: 0
