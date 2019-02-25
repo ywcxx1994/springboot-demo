@@ -21,6 +21,7 @@ import com.mongodb.DBObject;
 
 import cn.yanwin.demo.domain.Student;
 import cn.yanwin.demo.exception.MyException;
+import cn.yanwin.test.anno.Yanwei;
 import cn.yanwin.test.autoconfig.HelloService;
 
 /** 
@@ -110,5 +111,10 @@ public class HelloController {
     @RequestMapping(value="getRedis/{key}")
     public String getRedis(@PathVariable String key) {
     	return redisTemplate.opsForValue().get(key);
+    }
+    
+    @RequestMapping(value="testArgument")
+    public String testArgument(@Yanwei String key) {
+    	return key;
     }
 }

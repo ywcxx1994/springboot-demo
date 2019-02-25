@@ -9,6 +9,7 @@
 package cn.yanwin.demo.config;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -18,6 +19,7 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -27,6 +29,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import cn.yanwin.demo.web.filter.DemoFilter;
 import cn.yanwin.demo.web.interceptor.DemoInterceptor;
+import cn.yanwin.test.argument.YanweiArgument;
 
 /** 
 * @ClassName: MyConfiguration 
@@ -82,6 +85,13 @@ public class MyConfiguration extends WebMvcConfigurerAdapter{
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(interceptor);
 		super.addInterceptors(registry);
+	}
+	/**
+	 * 添加自定义参数解析器
+	 */
+	@Override
+	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
+		argumentResolvers.add(new YanweiArgument());
 	}
 	
 }

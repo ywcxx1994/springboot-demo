@@ -2,7 +2,7 @@ server:
   context-path: /
   port: 8888
 #显示debug日志信息
-debug: true
+debug: false
 ##演示自动配置
 hello: 
   msg: 颜伟
@@ -16,7 +16,7 @@ spring:
     #  uri: mongodb://root:root@192.168.163.128/yan?authSource=admin&authMechanism=MONGODB-CR
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/test?useUnicode=true&amp;zeroDateTimeBehavior=convertToNull&amp;characterEncoding=utf8
+    url: jdbc:mysql://192.168.30.45:3306/test?useUnicode=true&amp;zeroDateTimeBehavior=convertToNull&amp;characterEncoding=utf8
     username: root
     password: root
   jpa: 
@@ -25,10 +25,10 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5Dialect
     
   redis:  #redis配置
-    database: 1 #  数据库索引
-    host: 115.28.185.22
-    port: 6537
-    password: Jbinfo@E12349
+    database: 0 #  数据库索引
+    host: 118.178.120.184
+    port: 6379
+    password: Rs2017!@#jbinfo123456
     pool: #    链接池
       max-active: 8
       max-wait: 1

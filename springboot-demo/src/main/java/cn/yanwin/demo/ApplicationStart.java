@@ -17,7 +17,7 @@ import org.springframework.cache.annotation.EnableCaching;
 * @Description: 应用的入口   
 * @author Yan Wei  
 */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages={"cn.yanwin.test","cn.yanwin.demo"})
 @EnableCaching
 public class ApplicationStart {
 	
