@@ -40,8 +40,9 @@ public class HelloAutoConfiguration {
         return helloService;
     }
     @Bean
-    @ConditionalOnProperty(prefix = "enableAop",value = "storeMongo", matchIfMissing = true)
+    @ConditionalOnProperty(prefix = "enableAop",name = "storeMongo",havingValue="true")
     public ControllerLogAspect logBean() {
+    	System.out.println(">>>enable ControllerLogAspect to store log");
     	return new ControllerLogAspect();
     }
 }

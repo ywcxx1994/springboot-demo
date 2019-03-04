@@ -8,8 +8,11 @@
 */ 
 package cn.yanwin.demo.domain;
 
+import java.io.Serializable;
+
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /** 
 * @ClassName: Student 
@@ -18,8 +21,9 @@ import lombok.Data;
 */
 @Builder
 @Data
-public class Student {
-	
+@NoArgsConstructor
+public class Student implements Serializable{
+	private static final long serialVersionUID = -7060365644988194845L;
 	private String name;
 	private Integer age;
 	private String lover;

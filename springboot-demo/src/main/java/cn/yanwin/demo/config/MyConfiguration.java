@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -40,12 +41,14 @@ import cn.yanwin.test.argument.YanweiArgument;
 public class MyConfiguration extends WebMvcConfigurerAdapter{
 	@Autowired
 	private DemoInterceptor interceptor;
+	
 	@Bean
+	@ConditionalOnMissingBean(RedisTemplate.class)
 	public RedisTemplate<Object, Object> redisTemplate(RedisConnectionFactory connectionFactory){
 		RedisTemplate<Object, Object> template = new RedisTemplate<Object, Object>();
 		template.setConnectionFactory(connectionFactory);
 		//使用Jackson2JsonRedisSerializer来序列化和反序列化redis的value值
-	    Jackson2JsonRedisSerializer serializer = new Jackson2JsonRedisSerializer(Object.class);
+	    Jackson2JsonRedisSerializer<Object> serializer = new Jackson2JsonRedisSerializer(Object.class);
 	    ObjectMapper mapper = new ObjectMapper();
 	    mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
 	    mapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
