@@ -8,6 +8,7 @@
 */ 
 package cn.yanwin.demo.config;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
@@ -41,7 +42,14 @@ import cn.yanwin.test.argument.YanweiArgument;
 public class MyConfiguration extends WebMvcConfigurerAdapter{
 	@Autowired
 	private DemoInterceptor interceptor;
-	
+	/**
+	 * 
+	 * @description 
+	 * spring data提供默认redistemplate使用jdk的序列化机制，存进去是二进制的字节码，
+	 * 对象必须实现Serializable接口，使用
+	 * Jackson2JsonRedisSerializer，将存的对象转成json存储。
+	   @Date:2019年3月5日上午9:10:32
+	 */
 	@Bean
 	@ConditionalOnMissingBean(RedisTemplate.class)
 	public RedisTemplate<Object, Object> redisTemplate(RedisConnectionFactory connectionFactory){
