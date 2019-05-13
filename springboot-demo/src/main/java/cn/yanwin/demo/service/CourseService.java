@@ -11,6 +11,7 @@ package cn.yanwin.demo.service;
 import java.util.List;
 
 import cn.yanwin.demo.domain.Course;
+import org.springframework.http.HttpStatus;
 
 /** 
 * @ClassName: CourseService 
@@ -26,6 +27,5 @@ public interface CourseService {
 	Course findById(String id);
 	
 	Course save(Course course);
-	
 	String delete(String id);
 }
