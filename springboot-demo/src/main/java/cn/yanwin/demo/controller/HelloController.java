@@ -8,6 +8,8 @@
 */ 
 package cn.yanwin.demo.controller;
 
+import cn.yanwin.demo.service.impl.AsyncServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -25,19 +27,20 @@ import cn.yanwin.test.autoconfig.HelloService;
 
 /** 
 * @ClassName: HelloController 
-* @Description: TODO(这里用一句话描述这个类的作用) 
+* @Description: demo的控制器
 * @author Yan Wei  
 */
 @RestController
+@Slf4j
 public class HelloController {
-	//注入自定义starter内逻辑
     @Autowired
     private HelloService helloService;
     
     @Autowired
     private MongoTemplate mongoTemplate;
     
-    
+    @Autowired
+    AsyncServiceImpl asyncService;
     /**
      * 测试访问地址/hello
      * @return 格式化字符串
@@ -87,5 +90,14 @@ public class HelloController {
     @RequestMapping(value="testArgument")
     public String testArgument(@Yanwei String key) {
     	return key;
+    }
+
+    @RequestMapping("testThreadPool")
+    public String testThreadPool(){
+        log.info("start submit");
+        //调用service层的任务
+        asyncService.executeAsync();
+        log.info("end submit");
+        return "success";
     }
 }

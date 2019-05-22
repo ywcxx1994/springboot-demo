@@ -8,7 +8,6 @@
 */ 
 package cn.yanwin.demo.config;
 
-import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
@@ -94,7 +93,7 @@ public class MyConfiguration extends WebMvcConfigurerAdapter{
 	 */
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(interceptor);
+		registry.addInterceptor(interceptor).excludePathPatterns("/hello");
 		super.addInterceptors(registry);
 	}
 	/**

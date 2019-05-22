@@ -10,7 +10,8 @@ hello:
 #是否启用aop拦截日志存储mongo
 enableAop: 
   storeMongo: false
-spring: 
+
+spring:
   data: 
    #mongodb:
     #  uri: mongodb://root:root@192.168.163.128/yan?authSource=admin&authMechanism=MONGODB-CR

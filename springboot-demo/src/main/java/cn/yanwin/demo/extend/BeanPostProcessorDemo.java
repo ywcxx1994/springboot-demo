@@ -13,13 +13,13 @@ import org.springframework.stereotype.Component;
 public class BeanPostProcessorDemo implements BeanPostProcessor {
     @Override
     public Object postProcessBeforeInitialization(Object o, String s) throws BeansException {
-        System.out.println("enter before" + o.getClass().getSimpleName());
+        //System.out.println("enter before" + o.getClass().getSimpleName());
         return o;
     }
 
     @Override
     public Object postProcessAfterInitialization(Object o, String s) throws BeansException {
-        System.out.println("enter after");
+        //System.out.println("enter after");
         return o;
     }
 }
