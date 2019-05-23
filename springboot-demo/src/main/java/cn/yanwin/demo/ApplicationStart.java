@@ -11,6 +11,7 @@ package cn.yanwin.demo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /** 
 * @ClassName: ApplicationStart 
@@ -19,6 +20,7 @@ import org.springframework.cache.annotation.EnableCaching;
 */
 @SpringBootApplication(scanBasePackages={"cn.yanwin.test","cn.yanwin.demo"})
 @EnableCaching
+@EnableScheduling
 public class ApplicationStart {
 	
 	public static void main(String[] args) {
