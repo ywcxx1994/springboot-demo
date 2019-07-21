@@ -35,8 +35,10 @@ public class HelloAutoConfiguration {
     public HelloService createBean(){
         System.out.println(">>>The HelloService Not Found，Execute Create New Bean.");
         HelloService helloService = new HelloService();
-        helloService.setMsg(helloProperties.getMsg());//设置消息内容
-        helloService.setShow(helloProperties.isShow());//设置是否显示
+        //设置消息内容
+        helloService.setMsg(helloProperties.getMsg());
+        //设置是否显示
+        helloService.setShow(helloProperties.isShow());
         return helloService;
     }
     @Bean

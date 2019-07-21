@@ -47,7 +47,7 @@ public class SchedulingDemo {
         }
         log.info("demo2 end");
     }
-    @Scheduled(initialDelay = 1000*10,fixedDelay = 15000)
+    @Scheduled(initialDelay = 30*1000*60,fixedDelay = 15000)
     public void test2() {
         System.out.println("test2定时任务开始:"+sdf.format(new Date()));
         demo2();

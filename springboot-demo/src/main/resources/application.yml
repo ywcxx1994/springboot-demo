@@ -30,3 +30,4 @@ spring:
     host: yanwei.remote.com
     port: 6379
     password: Rs2017!@#jbinfo123456·
+lifeCycle:  signal

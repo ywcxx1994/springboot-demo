@@ -18,7 +18,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 @EnableAsync
 @Slf4j
 public class ExecutorConfig {
-    @Bean
+    @Bean("asyncServiceExecutor")
     public Executor asyncServiceExecutor(){
         log.info("start asyncServiceExecutor");
         ThreadPoolTaskExecutor executor = new VisiableThreadPoolTaskExecutor();
