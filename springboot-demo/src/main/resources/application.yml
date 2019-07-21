@@ -17,7 +17,7 @@ spring:
     #  uri: mongodb://root:root@192.168.163.128/yan?authSource=admin&authMechanism=MONGODB-CR
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://yanwei.remote.com:60360/test?useUnicode=true&amp;zeroDateTimeBehavior=convertToNull&amp;characterEncoding=utf8;useSSL=true
+    url: jdbc:mysql://yanwei.remote.com:60336/test?useUnicode=true&amp;zeroDateTimeBehavior=convertToNull&amp;characterEncoding=utf8;useSSL=true
     username: root
     password: p@ssw0rd
   jpa: 
@@ -29,11 +29,4 @@ spring:
     database: 0 #  数据库索引
     host: yanwei.remote.com
     port: 6379
-    password: Rs2017!@#jbinfo123456
-    pool: #    链接池
-      max-active: 8
-      max-wait: 1
-      max-idle: 8
-      min-idle: 0
-    timeout: 0
-lifeCycle:  testLifeCycle
+    password: Rs2017!@#jbinfo123456·
