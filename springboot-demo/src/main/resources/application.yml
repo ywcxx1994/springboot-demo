@@ -27,7 +27,7 @@ spring:
     
   redis:  #redis配置
     database: 0 #  数据库索引
-    host: yanwei.remote.com
+    host: 192.168.1.233
     port: 6379
-    password: Rs2017!@#jbinfo123456·
+#    password: Jbinfo@E12349
 lifeCycle:  signal
