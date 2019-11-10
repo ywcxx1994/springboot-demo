@@ -11,9 +11,15 @@ package cn.yanwin.demo.web.interceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import cn.yanwin.test.anno.Access;
+import cn.yanwin.test.util.CacheUtils;
 import org.springframework.stereotype.Component;
+import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /** 
 * @ClassName: DemoInterceptor 
@@ -37,13 +43,36 @@ public class DemoInterceptor implements HandlerInterceptor{
 	* @see org.springframework.web.servlet.HandlerInterceptor#preHandle(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, java.lang.Object) 
 	*/ 
 	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-			throws Exception {
-		//return false，不会执行handler的方法
-		System.out.println("interceptor preHandle");
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+		HandlerMethod handlerMethod = (HandlerMethod) handler;
+		if(handlerMethod.hasMethodAnnotation(Access.class)){
+			Access access = handlerMethod.getMethodAnnotation(Access.class);
+			int second = access.second();
+			int count = access.count();
+			Integer counts = (Integer)CacheUtils.get(request.getRequestURI());
+			if(counts == null){
+				CacheUtils.put(request.getRequestURI(),1,second);
+			}else{
+				if(counts > count){
+					this.render(response);
+					return false;
+				}
+				CacheUtils.put(request.getRequestURI(),counts+1);
+			}
+		}
 		return true;
 	}
+	private void render(HttpServletResponse response){
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("application/json;charset=UTF-8");
 
+		try {
+			PrintWriter pw = response.getWriter();
+			pw.write("请求过于频繁");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	/**
 	* <p>Description: </p> 
 	* @author Yan Wei   
@@ -59,7 +88,7 @@ public class DemoInterceptor implements HandlerInterceptor{
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		//这个方法handler中出现异常，不会执行这个方法
-		System.out.println("interceptor postHandle to do something");
+//		System.out.println("interceptor postHandle to do something");
 	}
 
 	/**
@@ -78,7 +107,7 @@ public class DemoInterceptor implements HandlerInterceptor{
 			throws Exception {
 		//ex这个异常@controllerAdvice没有处理，才会拦截到
 		//无论handler是否异常，都会走这个方法
-		System.out.println("interceptor afterCompletion");
+//		System.out.println("interceptor afterCompletion");
 	}
 
 }

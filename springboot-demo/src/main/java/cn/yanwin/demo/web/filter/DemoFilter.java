@@ -8,6 +8,8 @@
 */ 
 package cn.yanwin.demo.web.filter;
 
+import org.springframework.stereotype.Component;
+
 import java.io.IOException;
 
 import javax.servlet.Filter;
@@ -22,7 +24,7 @@ import javax.servlet.ServletResponse;
 * @Description:第一个过滤器组件
 * 	可以注册为spring的组件@Component
 */
-
+@Component
 public class DemoFilter implements Filter{
 
 	/**
@@ -51,10 +53,10 @@ public class DemoFilter implements Filter{
 	@Override
 	public void doFilter(ServletRequest arg0, ServletResponse arg1, FilterChain china)
 			throws IOException, ServletException {
-		System.out.println("demofilter filter begin");
+//		System.out.println("demofilter filter begin");
 		//放行
 		china.doFilter(arg0, arg1);
-		System.out.println("demofilter filter end");
+//		System.out.println("demofilter filter end");
 	}
 
 	/**
@@ -67,6 +69,6 @@ public class DemoFilter implements Filter{
 	*/ 
 	@Override
 	public void init(FilterConfig china) throws ServletException {
-		System.out.println("DemoFilter init");
+//		System.out.println("DemoFilter init");
 	}
 }

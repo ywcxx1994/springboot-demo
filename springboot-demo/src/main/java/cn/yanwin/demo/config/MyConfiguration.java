@@ -41,6 +41,9 @@ import cn.yanwin.test.argument.YanweiArgument;
 public class MyConfiguration extends WebMvcConfigurerAdapter{
 	@Autowired
 	private DemoInterceptor interceptor;
+
+	@Autowired
+	private DemoFilter demoFilter;
 	/**
 	 * 
 	 * @description 
@@ -76,11 +79,10 @@ public class MyConfiguration extends WebMvcConfigurerAdapter{
 	@Bean
 	public FilterRegistrationBean registyBean() {
 		FilterRegistrationBean bean = new FilterRegistrationBean();
-		DemoFilter filter = new DemoFilter();
 		//拦截那些路径
 		bean.setUrlPatterns(Arrays.asList("/*"));
 		//添加到过滤器中
-		bean.setFilter(filter);
+		bean.setFilter(demoFilter);
 		return bean;
 	}
 	/**
