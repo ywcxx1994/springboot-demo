@@ -1,13 +1,10 @@
 package cn.yanwin.demo.controller;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.ListOperations;
-import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.*;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,6 +34,18 @@ public class RedisController {
     	return "save success";
     }
     /**
+     *
+     * @Description: 根据key，获取value
+     * @author Yan Wei
+     * @date 2018年6月3日 上午9:23:57
+     * @param key
+     * @return
+     */
+    @RequestMapping(value="getRedis/{key}")
+    public String getRedis(@PathVariable String key) {
+        return (String)redisTemplate.opsForValue().get(key);
+    }
+    /**
      	* 存对象
      * @description
        @Date:2019年3月4日上午11:26:01
@@ -50,22 +59,39 @@ public class RedisController {
     	redisTemplate.opsForList().leftPush(key, Arrays.asList(stu1,stu2));
     	return "save success";
     }
-    /**
-     * 
-    * @Description: 根据key，获取value
-    * @author Yan Wei   
-    * @date 2018年6月3日 上午9:23:57 
-    * @param key
-    * @return
-     */
-    @RequestMapping(value="getRedis/{key}")
-    public String getRedis(@PathVariable String key) {
-    	return (String)redisTemplate.opsForValue().get(key);
-    }
+
     
     @RequestMapping(value="getRedisByKey/{key}")
     public Object getRedisByKey(@PathVariable String key) {
-    	return (List<Student>)redisTemplate.opsForList().leftPop("stu2");
+    	return redisTemplate.opsForList().leftPop(key);
     }
-    
+
+    @RequestMapping(value="setRedisSet/{key}")
+    public Object setRedisSet(@PathVariable String key) {
+        ZSetOperations zSetOperations = redisTemplate.opsForZSet();
+        SetOperations set = redisTemplate.opsForSet();
+        set.add(key,"22");
+        set.add(key,"22");
+        set.add(key,"33");
+        set.add(key,"44");
+        return set.members(key);
+    }
+
+    @RequestMapping(value="setRedisMap/{key}")
+    public Object setRedisMap(@PathVariable String key) {
+        HashOperations hashOperations = redisTemplate.opsForHash();
+        Map<String,String> map=new HashMap<String,String>();
+        map.put("key1","value1");
+        map.put("key2","value2");
+        map.put("key3","value3");
+        map.put("key4","value4");
+        map.put("key5","value5");
+
+        hashOperations.putAll(key,map);
+        //获取整个map
+        Map entries = hashOperations.entries(key);
+        //获取所有key
+        Set keys = hashOperations.keys(key);
+        return keys.toArray();
+    }
 }
