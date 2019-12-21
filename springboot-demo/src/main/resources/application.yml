@@ -26,8 +26,8 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5Dialect
     
   redis:  #redis配置
-    database: 0 #  数据库索引
-    host: 192.168.1.233
+    database: 1 #  数据库索引
+    host: 123.207.86.126
     port: 6379
 #    password: Jbinfo@E12349
 lifeCycle:  signal
