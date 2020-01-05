@@ -8,9 +8,11 @@
 */ 
 package cn.yanwin.demo;
 
+import cn.yanwin.demo.extend.MyBean;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 /** 
@@ -25,5 +27,10 @@ public class ApplicationStart {
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ApplicationStart.class, args);
+	}
+	@Bean(initMethod = "init")
+	public MyBean myBean(){
+		MyBean myBean = new MyBean();
+		return myBean;
 	}
 }
