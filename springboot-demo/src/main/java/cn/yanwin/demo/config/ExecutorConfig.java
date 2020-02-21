@@ -15,7 +15,7 @@ import java.util.concurrent.ThreadPoolExecutor;
  * @desc: 线程池配置
  */
 @Configuration
-@EnableAsync
+@EnableAsync(proxyTargetClass=true)
 @Slf4j
 public class ExecutorConfig {
     @Bean("asyncServiceExecutor")

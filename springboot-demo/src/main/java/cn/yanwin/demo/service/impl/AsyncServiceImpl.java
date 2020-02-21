@@ -13,13 +13,14 @@ import org.springframework.stereotype.Service;
  * @desc: 实现类
  */
 @Service
-public class AsyncServiceImpl {
+public class AsyncServiceImpl implements AsyncService{
     public static final Logger LOGGER = LoggerFactory.getLogger(AsyncServiceImpl.class);
     @Async("asyncServiceExecutor")
+    @Override
     public void executeAsync() {
         LOGGER.info("start executeAsync");
         try{
-            Thread.sleep(1000);
+            Thread.sleep(3000);
         }catch(Exception e){
             e.printStackTrace();
         }

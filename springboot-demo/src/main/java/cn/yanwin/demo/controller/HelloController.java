@@ -86,10 +86,9 @@ public class HelloController {
 
     @RequestMapping("testThreadPool")
     public String testThreadPool(){
-        log.info("start submit");
+        log.info("asyncService:{}\t",asyncService.getClass());
         //调用service层的任务
         asyncService.executeAsync();
-        log.info("end submit");
         return "success";
     }
 }

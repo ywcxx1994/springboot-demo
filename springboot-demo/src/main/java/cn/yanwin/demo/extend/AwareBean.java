@@ -26,7 +26,7 @@ public class AwareBean implements BeanNameAware, ApplicationContextAware, BeanFa
      */
     @Override
     public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
-        System.out.println("Enter AwareBean.setBeanFactory(), beanfactory = " + beanFactory + "\n");
+//        System.out.println("Enter AwareBean.setBeanFactory(), beanfactory = " + beanFactory + "\n");
         this.beanFactory = beanFactory;
     }
 
@@ -36,7 +36,7 @@ public class AwareBean implements BeanNameAware, ApplicationContextAware, BeanFa
      */
     @Override
     public void setBeanName(String beanName) {
-        System.out.println("Enter AwareBean.setBeanName(), beanName = " + beanName + "\n");
+//        System.out.println("Enter AwareBean.setBeanName(), beanName = " + beanName + "\n");
         this.beanName = beanName;
     }
 
@@ -47,7 +47,7 @@ public class AwareBean implements BeanNameAware, ApplicationContextAware, BeanFa
      */
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        System.out.println("Enter AwareBean.setApplicationContext(), applicationContext = " + applicationContext + "\n");
+//        System.out.println("Enter AwareBean.setApplicationContext(), applicationContext = " + applicationContext + "\n");
         this.applicationContext =  applicationContext;
     }
 }
