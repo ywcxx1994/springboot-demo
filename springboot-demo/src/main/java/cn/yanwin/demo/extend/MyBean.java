@@ -3,13 +3,14 @@ package cn.yanwin.demo.extend;
 import cn.yanwin.test.autoconfig.HelloService;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 
 /**
  * Created by 18765 on 2020/1/5 21:31
  */
-//@Component
+@Component
 public class MyBean implements InitializingBean {
 
     @Autowired
@@ -30,5 +31,10 @@ public class MyBean implements InitializingBean {
     @Override
     public void afterPropertiesSet() throws Exception {
         System.out.println("afterPropertiesSet:"+helloService);
+    }
+
+    public void setHelloService(HelloService helloService) {
+        System.out.println("by this method inject helloService");
+        this.helloService = helloService;
     }
 }
